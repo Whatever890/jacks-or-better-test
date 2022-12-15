@@ -72,11 +72,12 @@ public class MoneyTable : MonoBehaviour
 
     private void GetPrize(Hand resolvedHand)
     {
+        if (resolvedHand != Hand.None)
+        {
+            MoneyManager.ChangeAmountBy(_handRows[resolvedHand].betMultiplyValue * _activeColumn.bet);
+            SetMoneyCount();
+        }
         SetColumnSwitchAllow(true);
-        if (resolvedHand == Hand.None)
-            return;
-        MoneyManager.ChangeAmountBy(_handRows[resolvedHand].betMultiplyValue * _activeColumn.bet);
-        SetMoneyCount();
         SetDealAllow();
     }
 
